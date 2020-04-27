@@ -137,6 +137,16 @@ async function init(constraints) {
     try {
         stream = await navigator.mediaDevices.getUserMedia(constraints);
         // handleSuccess(stream);
+        let elem = document.documentElement; 
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+          } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+          }
         handleSuccess();
     } catch (e) {
         console.error('navigator.getUserMedia error:', e);
