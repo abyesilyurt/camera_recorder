@@ -26,11 +26,6 @@ recordButton.addEventListener('click', () => {
     }
 });
 
-// resumeButton.addEventListener('click', () => {
-//     // resumeRecording();
-//     mediaRecorder.resume();
-// });
-
 pauseButton.addEventListener('click', () => {
     // resumeRecording();
     mediaRecorder.pause();
@@ -81,7 +76,7 @@ function handleSourceOpen(event) {
 
 function handleDataAvailable(event) {
     console.log('handleDataAvailable', event);
-    if (event.data && event.data.size > 0) {
+    if (event.data && event.data.size > 0 && pauseButton.textContent != 'Resume') {
         recordedBlobs.push(event.data);
     }
 }
