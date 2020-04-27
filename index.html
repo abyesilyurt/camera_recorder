@@ -24,18 +24,17 @@
 
 <div id="container">
 
-    <video id="gum" playsinline autoplay muted></video>
-    <video id="recorded" playsinline loop></video>
+
 
     <div>
-        <!-- <button id="start">Start camera</button> -->
         <button id="record" disabled>Record</button>
         <button id="pause" disabled>Pause</button>
         <button id="play" disabled>Play</button>
         <button id="download" disabled>Download</button>
-        
-        <!-- <button id="resume" disabled>Resume</button> -->
     </div>
+
+    <video id="gum" playsinline autoplay muted></video>
+    <video id="recorded" playsinline loop></video>
 
     <div>
         <!-- <p>Echo cancellation: <input type="checkbox" id="echoCancellation"></p> -->
@@ -48,14 +47,22 @@
         margin: 0;
         padding: 0;
         height: 100%;
-        width: 100%:
+        width: 100%;
     }
 
     #gum{
         /* position: fixed; */
-        height: 100%;
-        width: 100%;
+        height: 80%;
+        width: 80%;
         object-fit: cover;
+    }
+
+    #record{
+        top: 0%;
+        /* position: fixed; */
+        /* height: 0%; */
+        /* width: 100%; */
+        /* object-fit: cover; */
     }
 </style>
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
