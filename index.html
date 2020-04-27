@@ -26,7 +26,7 @@
 
 
 
-    <div>
+    <div class="controls">
         <button id="record" disabled>Record</button>
         &nbsp;
         &nbsp;
@@ -58,27 +58,34 @@
 
     #gum{
         /* position: fixed; */
-        height: 80%;
-        width: 80%;
-        object-fit: cover;
+        height: 70%;
+        /* object-fit: cover; */
+        margin-left: auto;
+        margin-right: auto;
+        width:80% !important;
+        margin:0 auto !important;
+        display:block !important;
+        float:none !important;
     }
 
-    #record{
-        top: 0%;
-        /* position: fixed; */
-        /* height: 0%; */
-        
-        /* object-fit: cover; */
-    }
     button{
-        width: 5em;
-        height: 3em;
+        width: 15%;
+        height: 2em;
         background-color: rgb(42, 42, 54); /* Green */
         border: none;
         color: white;
         text-decoration: none;
         display: inline-block;
         font-size: 14px;
+    }
+
+    .controls{
+        margin-left: 30%;
+        margin-right: 10%;
+        width:80% !important;
+        margin:0 auto !important;
+        display:block !important;
+        float:none !important;
     }
 </style>
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
