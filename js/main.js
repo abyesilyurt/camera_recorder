@@ -123,14 +123,11 @@ function startRecording() {
 
 function stopRecording() {
     mediaRecorder.stop();
-
-    player.stopVideo();
 }
 
 
 function resumeRecording() {
     mediaRecorder.resume();
-    player.playVideo();
 }
 
 
