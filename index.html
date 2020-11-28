@@ -8,8 +8,6 @@
     <meta itemprop="description" content="Client-side WebRTC code samples">
     <meta itemprop="image" content="../../../images/webrtc-icon-192x192.png">
     <meta itemprop="name" content="WebRTC code samples">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta id="theme-color" name="theme-color" content="#ffffff">
 
     <base target="_blank">
 
@@ -26,7 +24,7 @@
 
 
 
-    <div class="controls">
+    <div class="controls" width="50px" heigh="50px">
         <button id="record" disabled>Record</button>
         &nbsp;
         &nbsp;
@@ -37,14 +35,15 @@
         &nbsp;
         &nbsp;
         <button id="download" disabled>Download</button>
+
+        <video id="gum" playsinline autoplay muted width="50px" heigh="50px"></video>
+        <video id="recorded" playsinline loop></video>
+        <div id="player"></div>
+
     </div>
 
-    <video id="gum" playsinline autoplay muted></video>
-    <video id="recorded" playsinline loop></video>
 
-    <div>
-        <!-- <p>Echo cancellation: <input type="checkbox" id="echoCancellation"></p> -->
-    </div>
+
 
 
 </div>

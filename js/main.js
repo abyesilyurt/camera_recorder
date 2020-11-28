@@ -17,12 +17,16 @@ const pauseButton = document.querySelector('button#pause');
 
 recordButton.addEventListener('click', () => {
     if (recordButton.textContent === 'Record') {
+        player.stopVideo();
+        player.playVideo();
         startRecording();
+        
     } else {
         stopRecording();
         recordButton.textContent = 'Record';
         playButton.disabled = false;
         downloadButton.disabled = false;
+        player.stopVideo();
     }
 });
 
@@ -32,9 +36,11 @@ pauseButton.addEventListener('click', () => {
 
     if (pauseButton.textContent === 'Pause') {
         mediaRecorder.pause();
+        player.pauseVideo();
         pauseButton.textContent = 'Resume';
     } else {
         mediaRecorder.resume();
+        player.playVideo();
         pauseButton.textContent = 'Pause';
         // playButton.disabled = false;
     }
@@ -49,6 +55,8 @@ playButton.addEventListener('click', () => {
     recordedVideo.srcObject = null;
     recordedVideo.src = window.URL.createObjectURL(superBuffer);
     recordedVideo.controls = true;
+
+    player.playVideo();
     recordedVideo.play();
 });
 
@@ -66,6 +74,10 @@ downloadButton.addEventListener('click', () => {
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
     }, 100);
+
+    let recordedVideo = document.querySelector('video#gum');
+    recordedVideo.stop();
+    player.stopVideo();
 });
 
 function handleSourceOpen(event) {
@@ -106,15 +118,19 @@ function startRecording() {
     mediaRecorder.ondataavailable = handleDataAvailable;
     mediaRecorder.start(10); // collect 10ms of data
     console.log('MediaRecorder started', mediaRecorder);
+
 }
 
 function stopRecording() {
     mediaRecorder.stop();
+
+    player.stopVideo();
 }
 
 
 function resumeRecording() {
     mediaRecorder.resume();
+    player.playVideo();
 }
 
 
@@ -138,21 +154,6 @@ async function init(constraints) {
     }
 }
 
-// document.querySelector('button#start').addEventListener('click', async () => {
-//     const hasEchoCancellation = document.querySelector('#echoCancellation').checked;
-//     const constraints = {
-//         audio: {
-//             echoCancellation: { exact: hasEchoCancellation }
-//         },
-//         video: {
-//             width: 1280, height: 720
-//         }
-//     };
-//     console.log('Using media constraints:', constraints);
-//     await init(constraints);
-// });
-
-
 // const hasEchoCancellation = document.querySelector('#echoCancellation').checked;
 const constraints = {
     audio: {
@@ -160,7 +161,7 @@ const constraints = {
         echoCancellation: { exact: true }
     },
     video: {
-        width: 1280, height: 720
+        height: {max: 320}
     }
 };
 console.log('Using media constraints:', constraints);
@@ -169,3 +170,33 @@ init(constraints);
 // Record/Stop Save
 // Fit to screen
 // Request to rotate
+
+
+
+
+
+// 2. This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '480',
+    width: '640',
+    videoId: 'AHmF9VF3PjI',
+    events: {
+      'onReady': onPlayerReady,
+    }
+  });
+}
+
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+//   event.target.playVideo();
+}
