@@ -158,7 +158,7 @@ const constraints = {
         echoCancellation: { exact: true }
     },
     video: {
-        height: {max: 320}
+        // height: {max: 320}
     }
 };
 console.log('Using media constraints:', constraints);
